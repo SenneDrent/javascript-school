@@ -3,7 +3,7 @@ class Bom {
     this.x = floor(random(1,raster.aantalKolommen))*raster.celGrootte;
     this.y = floor(random(0,raster.aantalRijen))*raster.celGrootte;
   }
-  
+
   toon() {
     image(bomPlaatje,this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -20,7 +20,7 @@ class Jos {
     this.aanDeBeurt = true;
     this.staOpBom = false;
   }
-  
+
   beweeg() {
     if (keyIsDown(RIGHT_ARROW)) {
       this.x += this.stapGrootte;
@@ -37,15 +37,15 @@ class Jos {
       this.frameNummer = 5;
       this.aanDeBeurt = false;
     }
-    
+
     this.x = constrain(this.x,0,canvas.width);
     this.y = constrain(this.y,0,canvas.height-raster.celGrootte);
-    
+
     if (this.x == canvas.width) {
       this.gehaald = true;
     }
   }
-  
+
   wordtGeraakt(vijand) {
     if (this.x == vijand.x && this.y == vijand.y) {
       return true;
@@ -54,7 +54,7 @@ class Jos {
       return false;
     }
   }
-  
+
   staatOp(bommenLijst) {
     for (var b = 0;b < bommenLijst.length;b++) {
       if (bommenLijst[b].x == this.x && bommenLijst[b].y == this.y) {
@@ -62,8 +62,8 @@ class Jos {
       }
     }
     return this.staOpBom;
-  } 
-  
+  }
+
   toon() {
     image(this.animatie[this.frameNummer],this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -79,32 +79,33 @@ var bommenArray = [];
 
 function setup() {
   var myCanvas = createCanvas(900,600);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   frameRate(10);
   textFont("Verdana");
   textSize(90);
-  
+
   raster = new Raster(12,18);
   raster.berekenCelGrootte();
-  
+
   for (var b = 0;b < 60;b++) {
     bommenArray.push(new Bom());
   }
-  
+
   eve = new Jos();
   eve.stapGrootte=1*raster.celGrootte;
   for (var b = 0;b < 6;b++) {
     frameEve = loadImage("images/sprites/Eve100px/Eve_" + b + ".png");
     eve.animatie.push(frameEve);
   }
-  
+
   alice = new Vijand(700,200);
   alice.stapGrootte = 1*eve.stapGrootte;
   alice.sprite = loadImage("images/sprites/Alice100px/Alice.png");
 
   bob = new Vijand(600,400);
   bob.stapGrootte = 1*eve.stapGrootte;
-  bob.sprite = loadImage("images/sprites/Bob100px/Bob.png");  
+  bob.sprite = loadImage("images/sprites/Bob100px/Bob.png");
 }
 
 function draw() {
@@ -122,15 +123,15 @@ function draw() {
     bob.beweeg();
     eve.aanDeBeurt = true;
   }
-  
+
   if (alice.x == bob.x && alice == bob.y) {
     bob.beweeg();
   }
-  
+
   eve.toon();
   alice.toon();
   bob.toon();
-  
+
   if (eve.wordtGeraakt(alice) || eve.wordtGeraakt(bob) || eve.staatOp(bommenArray)) {
     background('red');
     fill('white');
@@ -154,11 +155,11 @@ class Raster {
     this.aantalKolommen = k;
     this.celGrootte = null;
   }
-  
+
   berekenCelGrootte() {
     this.celGrootte = canvas.width / this.aantalKolommen;
   }
-  
+
   teken() {
     push();
     noFill();
@@ -187,7 +188,7 @@ class Vijand {
     this.x = constrain(this.x,0,canvas.width - raster.celGrootte);
     this.y = constrain(this.y,0,canvas.height - raster.celGrootte);
   }
-  
+
   toon() {
     image(this.sprite,this.x,this.y,raster.celGrootte,raster.celGrootte);
   }

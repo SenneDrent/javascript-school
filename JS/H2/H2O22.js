@@ -6,22 +6,22 @@ var bal = {
   snelheidX: 8,
   snelheidY: 5,
   demping: 1.0,
-  
+
   beweeg() {
-    
+
     this.x += this.snelheidX;
     this.y += this.snelheidY;
-    
+
     if (this.x <= this.straal || this.x >= canvas.width - this.straal) {
       this.snelheidX *= -this.demping;
     }
-    
+
     if (this.y <= this.straal || this.y >= canvas.height - this.straal) {
       this.snelheidY *= -this.demping;
       this.snelheidX *= this.demping;
     }
   },
-  
+
   teken() {
     fill(255,255,255,1);
     ellipse(this.x,this.y,this.diameter);
@@ -30,6 +30,7 @@ var bal = {
 
 function setup() {
   var myCanvas = createCanvas(1000,300);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   frameRate(50);
   colorMode(RGB,255,255,255,1);

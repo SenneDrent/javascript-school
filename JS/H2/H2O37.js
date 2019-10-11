@@ -11,7 +11,7 @@ class Knikker {
   beweeg() {
     this.x += this.snelheidX;
     this.y += this.snelheidY;
-    
+
     if (this.x < this.straal || this.x > canvas.width - this.straal) {
       this.snelheidX *= -1;
     }
@@ -19,7 +19,7 @@ class Knikker {
       this.snelheidY *= -1;
     }
   }
-  
+
   teken() {
     fill(255,255,255,1);
     ellipse(this.x,this.y,this.diameter);
@@ -30,6 +30,7 @@ var knikkerVerzameling = [];
 
 function setup() {
   var myCanvas = createCanvas(1000,300);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   frameRate(50);
   colorMode(RGB,255,255,255,1);

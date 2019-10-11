@@ -2,7 +2,7 @@ var raster = {
   aantalRijen: 6,
   aantalKolommen: 9,
   celGrootte: null,
-  
+
   berekenCelGrootte() {
     this.celGrootte = canvas.width/this.aantalKolommen;
   },
@@ -27,7 +27,7 @@ var jos = {
   frameNummer: 3,
   stapGrootte: null,
   gehaald: false,
-  
+
   beweeg() {
     if (keyIsDown(LEFT_ARROW)) {
       this.x -= this.stapGrootte;
@@ -45,15 +45,15 @@ var jos = {
       this.y += this.stapGrootte;
       this.frameNummer = 5;
     }
-    
+
     this.x = constrain(this.x,0,canvas.width);
     this.y = constrain(this.y,0,canvas.height - raster.celGrootte);
-    
+
     if (this.x == canvas.width) {
       this.gehaald = true;
     }
   },
-  
+
   wordtGeraakt(vijand) {
     if (this.x == vijand.x && this.y == vijand.y) {
       return true;
@@ -62,7 +62,7 @@ var jos = {
       return false;
     }
   },
-  
+
   toon() {
     image(this.animatie[this.frameNummer],this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -82,7 +82,7 @@ var alice = {
     this.x = constrain(this.x,0,canvas.width - raster.celGrootte);
     this.y = constrain(this.y,0,canvas.height - raster.celGrootte);
   },
-  
+
   toon() {
     image(this.sprite,this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -100,6 +100,7 @@ function preload() {
 
 function setup() {
   var myCanvas = createCanvas(900,600);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   frameRate(10);
   textFont("Verdana");

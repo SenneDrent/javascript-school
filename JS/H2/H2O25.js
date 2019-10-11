@@ -17,11 +17,11 @@ var jager = {
     if (keyIsDown(DOWN_ARROW)) {
       this.y += this.stapGrootte;
     }
-    
+
     this.x = constrain(this.x,0,canvas.width - this.zijde);
     this.y = constrain(this.y,0,canvas.height - this.zijde);
   },
-  
+
   vlakbijRand() {
     if (this.x < 4*this.stapGrootte || this.x > canvas.width - 4*this.stapGrootte - this.zijde) {
       return true;
@@ -30,7 +30,7 @@ var jager = {
       return false;
     }
   },
-  
+
   teken() {
     fill('dodgerblue');
     rect(this.x,this.y,this.zijde,this.zijde);
@@ -44,13 +44,13 @@ var prooi = {
   breedte: 75,
   hoogte: 50,
   benGeraakt: false,
-  
+
   wordJeGeraakt(vijand) {
     if (vijand.x >= this.x - vijand.zijde && vijand.x <= this.x + this.breedte) {
       this.benGeraakt=true;
     }
-  },  
-  
+  },
+
   teken() {
     if(this.benGeraakt) {
       fill('white');
@@ -65,6 +65,7 @@ var prooi = {
 
 function setup() {
   var myCanvas = createCanvas(1000,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   noStroke();
   frameRate(50);
@@ -77,7 +78,7 @@ function draw() {
   else {
     background('orange');
   }
-  
+
   jager.beweeg();
   prooi.wordJeGeraakt(jager);
   prooi.teken();

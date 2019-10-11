@@ -2,7 +2,7 @@ var raster = {
   aantalRijen: 6,
   aantalKolommen: 9,
   celGrootte: null,
-  
+
   berekenCelGrootte() {
     this.celGrootte = canvas.width/this.aantalKolommen;
   },
@@ -28,7 +28,7 @@ class Jos {
     this.stapGrootte = null;
     this.gehaald = false;
   }
-  
+
   beweeg() {
     if (keyIsDown(LEFT_ARROW)) {
       this.x -= this.stapGrootte;
@@ -46,15 +46,15 @@ class Jos {
       this.y += this.stapGrootte;
       this.frameNummer = 5;
     }
-    
+
     this.x = constrain(this.x,0,canvas.width);
     this.y = constrain(this.y,0,canvas.height - raster.celGrootte);
-    
+
     if (this.x == canvas.width) {
       this.gehaald = true;
     }
   }
-  
+
   wordtGeraakt(vijand) {
     if (this.x == vijand.x && this.y == vijand.y) {
       return true;
@@ -63,7 +63,7 @@ class Jos {
       return false;
     }
   }
-  
+
   toon() {
     image(this.animatie[this.frameNummer],this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -84,7 +84,7 @@ class Vijand {
     this.x = constrain(this.x,0,canvas.width - raster.celGrootte);
     this.y = constrain(this.y,0,canvas.height - raster.celGrootte);
   }
-  
+
   toon() {
     image(this.sprite,this.x,this.y,raster.celGrootte,raster.celGrootte);
   }
@@ -96,23 +96,24 @@ function preload() {
 
 function setup() {
   var myCanvas = createCanvas(900,600);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   frameRate(10);
   textFont("Verdana");
   textSize(90);
   raster.berekenCelGrootte();
-  
+
   eve = new Jos();
   eve.stapGrootte = 1*raster.celGrootte;
   for (var b = 0;b < 6;b++) {
     frameEve = loadImage("images/sprites/Eve100px/Eve_" + b + ".png");
     eve.animatie.push(frameEve);
   }
-  
+
   alice = new Vijand(700,200);
   alice.stapGrootte = 1*eve.stapGrootte;
   alice.sprite = loadImage("images/sprites/Alice100px/Alice.png");
-  
+
 }
 
 function draw() {
@@ -122,11 +123,11 @@ function draw() {
   alice.beweeg();
   eve.toon();
   alice.toon();
-  
+
   if (eve.wordtGeraakt(alice)) {
     noLoop();
   }
-  
+
   if (eve.gehaald) {
     background('green');
     fill('white');
