@@ -12,7 +12,7 @@ class Cirkel {
     this.diameter = this.x / 5;
     this.kleur = 'mediumaquamarine';
   }
-  
+
   teken() {
       push();
       noStroke();
@@ -20,29 +20,29 @@ class Cirkel {
       ellipse(this.x,this.y,this.diameter);
       pop();
   }
-  
+
   beweeg() {
     if (this.x < 0) {
       this.x = canvas.width;
     }
     if (this.x > canvas.width) {
       this.x = 0;
-    }    
+    }
   }
-  
+
   beweeg1() {
     this.kleur = 'mediumaquamarine';
     if (keyCode == LEFT_ARROW) {
       this.x -= this.snelheid;
       this.kleur = 'green';
-    }    
+    }
     if (keyCode == RIGHT_ARROW) {
       this.x += this.snelheid;
       this.kleur = 'olive';
-    } 
+    }
     this.beweeg();
   }
-  
+
   beweeg2() {
     this.kleur = 'mediumaquamarine';
     if (keyIsDown(LEFT_ARROW)) {
@@ -51,7 +51,7 @@ class Cirkel {
     }
     if (keyIsDown(RIGHT_ARROW)) {
       this.x += this.snelheid;
-      this.kleur = 'olive';      
+      this.kleur = 'olive';
     }
     this.beweeg();
   }
@@ -71,8 +71,9 @@ var tekstKleur = 'black';
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   c1 = new Cirkel(canvas.width / 2, canvas.height / 2);
   c2 = new Cirkel(canvas.width / 2, 3 * canvas.height / 4);
@@ -83,7 +84,7 @@ function draw() {
   c1.beweeg1();
   c1.teken();
   c2.beweeg2();
-  c2.teken();  
+  c2.teken();
   //basisTekst = 'key='+key+' keyCode='+keyCode+'\n';
   tekst = basisTekst+'\n';
   if (keyIsDown(LEFT_ARROW)) {
@@ -93,7 +94,7 @@ function draw() {
   else {
     tekstKleur = 'black';
     tekst += 'LINKS wordt NIET ingedrukt.\n';
-  }  
+  }
   if (keyCode == RIGHT_ARROW) {
     textFont("Georgia");
     textSize(30);

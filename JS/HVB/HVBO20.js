@@ -9,11 +9,11 @@ class Speler {
     this.naam = n;
     this.resterendeBeurten = null;
   }
-  
+
   kiesLetter() {
     // kies een letter
     // DIT WERKT OOK: if (keyCode >= 97 && keyCode <= 122) {
-    
+
     if (key >= 'a' && key <= 'z') {
       spel.controleerInvoer();
     }
@@ -36,17 +36,17 @@ class Galgje {
     this.pogingen = [0];
     this.maakRijLetters();
   }
-  
+
   maakRijLetters() {
     for (var l = 0;l < this.woord.length;l++) {
       this.letters.push(this.woord.substr(l,1));
       this.geraden.push(false);
     }
   }
-  
+
   controleerInvoer() {
     // mag deze invoer?
-    
+
     if (this.speler.resterendeBeurten > 0 && !this.woordIsGeraden()) {
       this.verwerkInvoer();
       this.teken();
@@ -55,7 +55,7 @@ class Galgje {
 
   verwerkInvoer() {
     // verwerk de invoer
-    
+
     this.pogingen.push(key);
     var letterZitInWoord = false;
     for (var l = 0;l < this.letters.length;l++) {
@@ -78,10 +78,10 @@ class Galgje {
     }
     return geraden;
   }
-  
+
   teken() {
     // teken de speltoestand
-    
+
     push();
     background('lightcyan');
     noStroke();
@@ -109,7 +109,7 @@ class Galgje {
     if (this.woordIsGeraden()) {
       fill('green');
       text("GEWONNEN :)",0,100,canvas.width,300);
-    }    
+    }
     pop();
   }
 }
@@ -130,8 +130,9 @@ function preload() {
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   noLoop();
   speler = new Speler('Vincent');
