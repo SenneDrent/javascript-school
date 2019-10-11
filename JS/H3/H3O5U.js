@@ -9,7 +9,7 @@ class Speler {
     this.naam = n;
     this.resterendeBeurten = null;
   }
-  
+
   kiesLetter() {
     // kies een letter
 
@@ -36,17 +36,17 @@ class Galgje {
     this.pogingen = [];
     this.maakRijLetters();
   }
-  
+
   maakRijLetters() {
     for (var l = 0;l < this.woord.length;l++) {
       this.letters.push(this.woord.substr(l,1));
       this.geraden.push(false);
     }
   }
-  
+
   controleerInvoer() {
     // mag deze invoer?
-    
+
     if (this.speler.resterendeBeurten > 0 && !this.woordIsGeraden()) {
       this.verwerkInvoer();
       this.teken();
@@ -72,7 +72,7 @@ class Galgje {
       }
       if (!letterZitInWoord) {
         this.speler.resterendeBeurten--;
-      }       
+      }
     }
   }
 
@@ -85,10 +85,10 @@ class Galgje {
     }
     return geraden;
   }
-  
+
   teken() {
     // teken de speltoestand
-    
+
     push();
     background('lightcyan');
     noStroke();
@@ -107,7 +107,7 @@ class Galgje {
     }
     tekst=tekst.substr(0,tekst.length-1);
     text(tekst,12,0,canvas.width,70);
-    
+
     var pogingtekst = "";
     for (var p = 0; p < this.pogingen.length;p++) {
       pogingtekst += this.pogingen[p]+" ";
@@ -124,7 +124,7 @@ class Galgje {
     if (this.woordIsGeraden()) {
       fill('green');
       text("Goed gedaan, "+this.speler.naam,0,100,canvas.width,300);
-    } 
+    }
     else {
       fill('orange');
       text(speler.resterendeBeurten,canvas.width - 50,canvas.height - 50);
@@ -149,8 +149,9 @@ function preload() {
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   noLoop();
   speler = new Speler('Vincent');

@@ -12,7 +12,7 @@ class Bal {
   this.aantalKerenGestuiterd = 0;
   this.geraakt = false;
   }
-  
+
   beweeg() {
     this.snelheid+=9.81/15;
     this.y+=this.snelheid;
@@ -22,7 +22,7 @@ class Bal {
       this.aantalKerenGestuiterd++;
     }
   }
-  
+
   teken() {
     push();
     noStroke();
@@ -38,6 +38,7 @@ var score = 0;
 
 function setup() {
   var myCanvas = createCanvas(450,450);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   colorMode(RGB,255,255,255,1);
   frameRate(15);
@@ -53,7 +54,7 @@ function draw() {
   if (mouseIsPressed && erIsNogGeenBalGestuiterd) {
     ballenArray.push(new Bal(mouseX,mouseY));
   }
-  
+
   for (b=0;b<ballenArray.length;b++) {
     ballenArray[b].beweeg();
     ballenArray[b].teken();

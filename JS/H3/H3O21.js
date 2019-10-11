@@ -1,9 +1,3 @@
-/* 
-Je stelt nu twee keer muispositie vast. Kun je vastleggen in een zet (eigenschap speler)
-Wisselen van speler? Of logisch afleiden? Of actieve speler
-*/
-
-
 /*  **********************************************************
     **                BEGIN klasse Speler                   **
     ********************************************************** */
@@ -15,7 +9,7 @@ class Speler {
     this.aanDeBeurt = false;
     this.naam = naam;
   }
-  
+
   teken() {
     push();
 
@@ -46,7 +40,7 @@ class Bord {
       this.opties.push(bordRij);
     }
   }
-  
+
   muisOver(x,y) {
     var kolnr = -1;
     if (y > this.y && y < this.y + (this.marge + this.grootte) * this.Nrij) {
@@ -54,7 +48,7 @@ class Bord {
     }
     return kolnr;
   }
-  
+
   kolomGevuld(kolnr) {
     var antwoord = true;
     for (var rijnr = 0;rijnr < this.Nrij;rijnr++) {
@@ -64,7 +58,7 @@ class Bord {
     }
     return antwoord;
   }
-  
+
   plaatsSteen(s) {
     var kolnr = this.muisOver(mouseX,mouseY);
     for (var rijnr = this.Nrij - 1;rijnr >= 0;rijnr--) {
@@ -72,9 +66,9 @@ class Bord {
         this.opties[rijnr][kolnr] = s;
         return;
       }
-    }    
-  }  
-  
+    }
+  }
+
   linksboven(rij,kolom) {
     var speler = this.opties[rij][kolom];
     if (speler == 0) {
@@ -113,7 +107,7 @@ class Bord {
 
   controleerWinst() {
     // controleer van elke plaats op het bord of het de linker/bovenhoek van een reeks van 4 is.
-    
+
     for (var rij = 0; rij < this.Nrij; rij++) {
         for (var kolom = 0; kolom < this.Nkolom; kolom++) {
             if (this.linksboven(rij, kolom)) {
@@ -122,7 +116,7 @@ class Bord {
         }
     }
     return false;
-  }  
+  }
 
   teken() {
     push();
@@ -156,7 +150,7 @@ class VierOpEenRij {
     this.actief = false;
     this.afgelopen = null;
   }
-  
+
   nieuw() {
     this.bord = new Bord();
     this.speler1.aanDeBeurt = true;
@@ -172,7 +166,7 @@ class VierOpEenRij {
       return false;
     }
   }
-  
+
   wisselBeurt() {
     if (this.speler1.aanDeBeurt) {
       this.speler1.aanDeBeurt = false;
@@ -180,7 +174,7 @@ class VierOpEenRij {
     }
     else {
       this.speler2.aanDeBeurt = false;
-      this.speler1.aanDeBeurt = true;      
+      this.speler1.aanDeBeurt = true;
     }
   }
 
@@ -200,8 +194,8 @@ class VierOpEenRij {
     else {
       this.wisselBeurt();
     }
-  }  
-  
+  }
+
   beginScherm() {
     push();
     textAlign(CENTER,CENTER);
@@ -210,7 +204,7 @@ class VierOpEenRij {
     text("Welkom bij 4 op 'n rij.\n\nSpeel dit spel met z'n tweeën:\nJullie gebruiken allebei de muis.\nKlik om het spel te starten.",0,0,canvas.width,canvas.height)
     pop();
   }
-  
+
   eindScherm() {
     var tekst = 'Rechts';
     if (this.speler1.gewonnen) {
@@ -222,7 +216,7 @@ class VierOpEenRij {
     fill(0);
     text(tekst,0,0,canvas.width,canvas.height);
     pop();
-  }  
+  }
 
   teken() {
     textFont("Monospace");
@@ -264,6 +258,7 @@ class VierOpEenRij {
 
 function setup() {
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   bassie = new Speler('Bassie');
   adriaan = new Speler('Adriaan');
@@ -289,10 +284,10 @@ function mousePressed() {
     else {
       if (spel.controleerZet()) {
         spel.update();
-        spel.teken();   
+        spel.teken();
       }
-    }      
-  }  
+    }
+  }
 }
 
 

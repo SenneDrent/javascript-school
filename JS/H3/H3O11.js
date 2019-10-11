@@ -13,7 +13,7 @@ class Racket {
     this.y = canvas.height - 2 * this.hoogte;
     this.kleur = 255;
   }
-  
+
   teken() {
       push();
       noStroke();
@@ -21,7 +21,7 @@ class Racket {
       rect(this.x,this.y,this.breedte,this.hoogte);
       pop();
   }
-  
+
   raaktBal(bal) {
     if (bal.x > this.x && bal.x < this.x + this.breedte && bal.y + bal.straal >= this.y && bal.y + bal.straal < this.y + this.hoogte) {
       return true;
@@ -30,7 +30,7 @@ class Racket {
       return false;
     }
   }
-  
+
   beweeg() {
     if (key == 'a') {
       this.x -= this.snelheid;
@@ -58,27 +58,27 @@ class Tennisbal {
     this.snelheidY = random(1,this.basissnelheid);
     this.kleur = 0;
   }
-  
+
   botsTegenWand() {
     if (this.x<this.straal || this.x>canvas.width-this.straal) {
       this.snelheidX*=-1;
     }
     if (this.y<this.straal || this.y>canvas.height-this.straal) {
       this.snelheidY*=-1;
-    }    
+    }
   }
-  
+
   reageerOpRacket(r) {
     this.snelheidY *= -1;
     this.y = r.y - this.straal;
   }
-  
+
   beweeg() {
     this.x+=this.snelheidX;
     this.y+=this.snelheidY;
     this.botsTegenWand();
   }
-  
+
   teken() {
     fill(this.kleur);
     ellipse(this.x,this.y,this.diameter);
@@ -96,7 +96,7 @@ class Tennis {
     this.b = bal;
     this.actief = false;
   }
-  
+
   beginScherm() {
     push();
     textAlign(CENTER,CENTER);
@@ -104,7 +104,7 @@ class Tennis {
     text("Dit is een simpel tennis-spel. Bestuur je racket met de a (links) en de d (rechts).\n\nDruk op de spatiebalk om het spel te starten.",0,0,canvas.width,canvas.height);
     pop();
   }
-  
+
   update() {
     if (spel.actief) {
       if (this.r.raaktBal(this.b)) {
@@ -113,7 +113,7 @@ class Tennis {
       this.b.beweeg();
     }
   }
-  
+
   teken() {
     background(200);
     textFont("Monospace");
@@ -136,8 +136,9 @@ class Tennis {
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   racket = new Racket();
   bal = new Tennisbal();

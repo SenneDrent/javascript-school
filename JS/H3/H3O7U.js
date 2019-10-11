@@ -36,10 +36,10 @@ class kleurInvoer {
   constructor(x,k) {
     this.x = 400 + 60 * x;
     this.y = 30;
-    this.kleur = k;    
+    this.kleur = k;
     this.diameter = 50;
   }
-  
+
   muisOver() {
     if (dist(this.x,this.y,mouseX,mouseY) < this.diameter / 2) {
       return true;
@@ -48,13 +48,13 @@ class kleurInvoer {
       return false;
     }
   }
-  
+
   teken() {
     push();
     noStroke();
     fill(this.kleur);
     ellipse(this.x,this.y,this.diameter);
-    pop();    
+    pop();
   }
 }
 /*  **********************************************************
@@ -74,20 +74,20 @@ class codeKraker {
     this.maakInvoerButtons();
     this.actief = false;
   }
-  
+
   maakInvoerButtons() {
     for (var k = 0;k < this.kleurenLijst.length;k++) {
       this.invoerButtons.push(new kleurInvoer(k,this.kleurenLijst[k]));
-    }    
+    }
   }
-  
+
   genereerOpgave() {
     for (var o = 0;o < 4;o++) {
       this.opgave[o]=floor(random(0,6));
     }
-    this.pogingen.push(new kleurCode(this.opgave,this.kleurenLijst));    
+    this.pogingen.push(new kleurCode(this.opgave,this.kleurenLijst));
   }
-  
+
   registreerInvoer() {
     for (var i = 0;i < this.invoerButtons.length;i++) {
       if (this.invoerButtons[i].muisOver()) {
@@ -95,7 +95,7 @@ class codeKraker {
       }
     }
   }
-  
+
   teken() {
     if (!this.actief) {
       this.beginscherm();
@@ -113,19 +113,19 @@ class codeKraker {
       }
       else {
         this.tekenInvoer();
-      } 
+      }
       this.tekenOpgave();
       this.tekenButtons();
       this.tekenPogingen();
     }
   }
-  
+
   tekenButtons() {
     for (var i = 0;i < this.invoerButtons.length;i++) {
       this.invoerButtons[i].teken();
     }
   }
-  
+
   tekenOpgave() {
     push();
     translate(30,30);
@@ -133,9 +133,9 @@ class codeKraker {
     translate(0,70);
     fill('black');
     rect(-25,-40,230,10);
-    pop();    
+    pop();
   }
-  
+
   tekenInvoer() {
     push();
     noStroke();
@@ -146,7 +146,7 @@ class codeKraker {
     }
     pop();
   }
-  
+
   tekenPogingen() {
     push();
     translate(30,100);
@@ -154,13 +154,13 @@ class codeKraker {
       this.pogingen[p].teken();
       translate(0,60);
     }
-    pop();    
+    pop();
     }
-    
+
     voegVolledigePogingToe() {
-      this.pogingen.push(new kleurCode(this.poging,this.kleurenLijst));      
+      this.pogingen.push(new kleurCode(this.poging,this.kleurenLijst));
     }
-    
+
     controleerPoging() {
       var gelijk = 0;
         for (var p = 0;p < this.poging.length;p++) {
@@ -194,7 +194,7 @@ class codeKraker {
       }
       else {
         var kleur = 'indianred'
-        var tekst = 'VERLOREN :(';       
+        var tekst = 'VERLOREN :(';
       }
       background(kleur);
       for (var p = 0;p < 4;p++) {
@@ -202,7 +202,7 @@ class codeKraker {
       }
       this.tekenPogingen();
       this.tekenOpgave();
-      
+
       textAlign(CENTER,CENTER);
       textSize(60);
       fill('white');
@@ -216,6 +216,7 @@ class codeKraker {
 
 function setup() {
   var myCanvas = createCanvas(740,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   spel = new codeKraker();
   spel.teken();
@@ -233,7 +234,7 @@ function mousePressed() {
   else {
     spel.registreerInvoer();
   }
-  spel.teken();  
+  spel.teken();
 }
 /*  **********************************************************
     **               EINDE hoofdprogramma                   **

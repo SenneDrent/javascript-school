@@ -12,7 +12,7 @@ class Cirkel {
     this.diameter = this.x / 5;
     this.kleur = 'mediumaquamarine';
   }
-  
+
   teken() {
       push();
       noStroke();
@@ -20,29 +20,29 @@ class Cirkel {
       ellipse(this.x,this.y,this.diameter);
       pop();
   }
-  
+
   beweeg() {
     if (this.x < 0) {
       this.x = canvas.width;
     }
     if (this.x > canvas.width) {
       this.x = 0;
-    }    
+    }
   }
-  
+
   beweeg1() {
     this.kleur = 'mediumaquamarine';
     if (keyCode == LEFT_ARROW) {
       this.x -= this.snelheid;
       this.kleur = 'green';
-    }    
+    }
     if (keyCode == RIGHT_ARROW) {
       this.x += this.snelheid;
       this.kleur = 'olive';
-    } 
+    }
     this.beweeg();
   }
-  
+
   beweeg2() {
     this.kleur = 'mediumaquamarine';
     if (keyIsDown(LEFT_ARROW)) {
@@ -51,7 +51,7 @@ class Cirkel {
     }
     if (keyIsDown(RIGHT_ARROW)) {
       this.x += this.snelheid;
-      this.kleur = 'olive';      
+      this.kleur = 'olive';
     }
     this.beweeg();
   }
@@ -67,8 +67,9 @@ var kleurNummer = 0;
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   c1 = new Cirkel(canvas.width / 2, canvas.height / 4);
   c2 = new Cirkel(canvas.width / 2, 3 * canvas.height / 4);

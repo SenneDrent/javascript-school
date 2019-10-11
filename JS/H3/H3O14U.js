@@ -13,7 +13,7 @@ class Racket {
     this.kleur = 255;
     this.metEffect = false;
   }
-  
+
   teken() {
       push();
       noStroke();
@@ -21,7 +21,7 @@ class Racket {
       rect(this.x,this.y,this.breedte,this.hoogte);
       pop();
   }
-  
+
   raaktBal(bal) {
     if (bal.x > this.x && bal.x < this.x + this.breedte && bal.y + bal.straal >= this.y && bal.y + bal.straal < this.y + this.hoogte) {
       return true;
@@ -30,7 +30,7 @@ class Racket {
       return false;
     }
   }
-  
+
   raaktMuis(mx,my) {
     if (mx > this.x && mx < this.x + this.breedte && my > this.y && my < this.y + this.hoogte) {
       return true;
@@ -58,36 +58,36 @@ class Tennisbal {
     this.kleur = 0;
     this.factor = 1;
   }
-  
+
   botsTegenWand() {
     if (this.x<this.straal || this.x>canvas.width-this.straal) {
       this.snelheidX*=-1;
     }
     if (this.y<this.straal) {
       this.snelheidY*=-1;
-    }    
+    }
   }
-  
+
   reageerOpRacket(r) {
     this.snelheidY *= -1.1;
     this.snelheidY = constrain(this.snelheidY,-40,40);
     this.y = r.y - this.straal;
     if (r.metEffect) {
       this.factor = -4 * ((r.x + 0.5 * r.breedte) - this.x) / r.breedte;
-      this.factor = round(100 * this.factor)/100;      
-      this.snelheidX = this.basissnelheid * this.factor;       
+      this.factor = round(100 * this.factor)/100;
+      this.snelheidX = this.basissnelheid * this.factor;
     }
     else {
       this.factor = 1;
     }
   }
-  
+
   beweeg() {
     this.x+=this.snelheidX;
     this.y+=this.snelheidY;
     this.botsTegenWand();
   }
-  
+
   teken() {
     fill(this.kleur);
     ellipse(this.x,this.y,this.diameter);
@@ -106,7 +106,7 @@ class Tennis {
     this.actief = false;
     this.afgelopen = false;
   }
-  
+
   beginScherm() {
     push();
     textAlign(CENTER,CENTER);
@@ -114,15 +114,15 @@ class Tennis {
     text("Dit is een simpel tennis-spel. Bestuur je racket door deze met je muis te slepen.\nSchakel het spelen met effect in of uit met je muiswiel.\n\nKlik om het spel te starten.",0,0,canvas.width,canvas.height)
     pop();
   }
-  
+
   eindScherm() {
     push();
     textAlign(CENTER,CENTER);
     fill(0);
     text("HELAAS: je bent AF.",0,0,canvas.width,canvas.height);
     pop();
-  }  
-  
+  }
+
   update() {
     if (spel.actief) {
       if (this.r.raaktBal(this.b)) {
@@ -131,10 +131,10 @@ class Tennis {
       this.b.beweeg();
       if (this.b.y > canvas.height + this.b.straal) {
         this.afgelopen = true;
-      }      
+      }
     }
   }
-  
+
   teken() {
     background(200);
     textFont("Monospace");
@@ -161,8 +161,9 @@ class Tennis {
 
 function setup() {
   // initialisatie
-  
+
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   racket = new Racket();
   bal = new Tennisbal();
@@ -199,9 +200,9 @@ function mouseWheel() {
   else {
     spel.r.kleur = 'orange';
     spel.r.metEffect = true;
-  }  
+  }
   // return false voorkomt dat je browserscherm gaat scrollen
-  
+
   return false;
 }
 

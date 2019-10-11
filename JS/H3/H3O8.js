@@ -9,7 +9,7 @@ class Speler {
     this.naam = n;
     this.laatsteZet = null;
   }
-  
+
   invoer(key) {
     this.laatsteZet = key;
     spel.invoerCorrect(this.laatsteZet);
@@ -22,33 +22,33 @@ class Speler {
 
 class Nim {
   constructor(s) {
-    this.speler = s;    
+    this.speler = s;
     this.aantalMunten = null;
     this.tegenZet = null;
     this.actief = null;
     this.nieuw();
   }
-  
+
   nieuw() {
     this.aantalMunten = 12;
     this.actief = false;
     this.tegenZet = null;
     this.teken();
   }
-  
+
   invoerCorrect(invoer) {
     if (invoer >= 1 && invoer <= 3 && invoer <= this.aantalMunten) {
       spel.verwerkInvoer(invoer);
     }
-  } 
-  
+  }
+
   verwerkInvoer(invoer) {
     this.aantalMunten -= invoer;
     this.tegenZet = 4 - invoer;
     this.aantalMunten -= this.tegenZet;
     this.teken();
   }
-  
+
   spelerAf() {
     if (this.aantalMunten == 0) {
       this.actief = false;
@@ -58,7 +58,7 @@ class Nim {
       return false;
     }
   }
-  
+
   teken() {
     if (!this.actief) {
       this.tekenIntroductiescherm();
@@ -72,7 +72,7 @@ class Nim {
       }
     }
   }
-  
+
   tekenIntroductiescherm() {
       push();
       noStroke();
@@ -81,9 +81,9 @@ class Nim {
       textSize(20);
       background('steelblue');
       fill('white');
-      text("Welkom bij Nim.\n\nEr liggen 12 munten op tafel. Jij mag er 1, 2 of 3 pakken (gebruik het toetsenbord). Daarna pak ik er 1, 2 of 3. Wie de laatste munt pakt heeft gewonnen.\n\nDruk op de spatiebalk om te beginnen.",0,0,canvas.width,canvas.height/2);   
+      text("Welkom bij Nim.\n\nEr liggen 12 munten op tafel. Jij mag er 1, 2 of 3 pakken (gebruik het toetsenbord). Daarna pak ik er 1, 2 of 3. Wie de laatste munt pakt heeft gewonnen.\n\nDruk op de spatiebalk om te beginnen.",0,0,canvas.width,canvas.height/2);
   }
-  
+
   tekenEindscherm() {
     push();
     background('red');
@@ -94,10 +94,10 @@ class Nim {
     rect(0,0,canvas.width,canvas.height);
     fill('white');
     var tekst="Je hebt verloren :(\n\nDruk op de spatiebalk.";
-    text(tekst,0,0,canvas.width,canvas.height);    
-    pop();    
+    text(tekst,0,0,canvas.width,canvas.height);
+    pop();
   }
-  
+
   tekenHuidigeToestand() {
     background('grey');
     this.tekenMunten();
@@ -116,7 +116,7 @@ class Nim {
     text(tekst,0,canvas.height / 2,canvas.width,canvas.height / 2);
     pop();
   }
-  
+
   tekenMunten() {
     push();
     var diameter = 85;
@@ -142,6 +142,7 @@ class Nim {
 
 function setup() {
   var myCanvas = createCanvas(700,400);
+  canvas = myCanvas; // zoomfix
   myCanvas.parent('processing');
   speler = new Speler('Ids');
   spel = new Nim(speler);
