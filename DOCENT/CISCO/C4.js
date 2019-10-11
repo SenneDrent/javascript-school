@@ -12,23 +12,23 @@ class Boss {
         this.setVoornaam(v);
         this.setAchternaam(a);
     }
-    
+
     setVoornaam(n) {
         this.voornaam = n;
     }
-    
+
     setAchternaam(n) {
         this.achternaam = n;
-    }    
+    }
 
     get getVoornaam() {
         return 'sir ' + this.voornaam;
     }
-    
+
     get getAchternaam() {
         return this.achternaam;
-    }    
-    
+    }
+
     get getVolledigeNaam() {
         return this.voornaam+' ' + this.achternaam;
     }
@@ -41,7 +41,7 @@ function setup() {
   textSize(40);
   textAlign(CENTER,CENTER);
   fill(255);
-  
+
   at = new Boss('Alan','Turing');
   al = new Bescheiden('Ada','Lovelace');
 }
@@ -49,7 +49,7 @@ function setup() {
 function draw() {
     background('silver');
     fill('darkgreen');
-    text('Mijn naam is\n' + al.volledigeNaam,0,0,canvas.width,canvas.height / 2);    
+    text('Mijn naam is\n' + al.volledigeNaam,0,0,canvas.width,canvas.height / 2);
     fill('orange');
     if (mouseIsPressed) {
         at.setVoornaam('Gerrit');
