@@ -1,4 +1,4 @@
-# natasa
+# hoog
 OO games H1 &amp; H2
 
 Jouw bestanden bewaar je op GitHub onder je eigen account, gekoppeld aan je EMAILADRES VAN SCHOOL.
