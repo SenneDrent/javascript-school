@@ -16,14 +16,13 @@ function draw() {
   fill('lightgray');
   rect(100,280,100,100);
   fill('gray');
-  // VERVANG DEZE REGEL door een regel die het dak tekent
-  // teken de deur
+  triangle(100,280,200,280,150,180);
+  fill('darkgrey');
+  rect(120,330,30,50);
+  fill('darkgrey');
   noStroke();
-  // PAS ONDERSTAANDE REGEL AAN zodat de deur op de juiste plaats staat
-  rect(10,10,30,50);
-  // teken de maan
   fill('khaki');
-  // VERVANG DEZE REGEL door een regel die de maan tekent met een diameter van 150 en 50 vanaf de rand
+ ellipse(350,125,150)
   // teken de boom
   fill('sienna');
   rect(300,250,40,130);
