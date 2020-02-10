@@ -13,7 +13,7 @@ function draw() {
   fill('black');
   text("mouseX:" + round(mouseX) + " mouseY:" + round(mouseY),10,20);
   text("xJOS:" + xJOS + " yJOS:" + yJOS,300,20);
-  translate(xJOS,yJOS);
+  translate(mouseX,mouseY);
   
   // in de volgende regels wordt JOS getekend
 

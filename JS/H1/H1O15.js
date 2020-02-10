@@ -1,4 +1,4 @@
-var xJOS = 225;
+var xJOS = 75;
 var yJOS = 75;
 
 function setup() {
@@ -14,6 +14,7 @@ function draw() {
   background('lavender');
   text("x = " + round(xJOS),10,20);
   tekenJos(xJOS,yJOS);
+
 }
 
 function tekenJos(x,y) {
