@@ -1,14 +1,1 @@
-var diameter = 300;
-
-function setup() {
-  var myCanvas = createCanvas(450,450);
-  myCanvas.parent('processing');
-  colorMode(RGB, 255, 255, 255, 1);
-  noStroke();
-}
-
-function draw() {
-  background(255,255,255,1);
-  fill(255,0,0,0.5);
-  ellipse(width / 2,height / 2,diameter);
-}
+var _0x2508=['processing'];(function(_0x564535,_0x5674ca){var _0x3e6f81=function(_0x5e349b){while(--_0x5e349b){_0x564535['push'](_0x564535['shift']());}};_0x3e6f81(++_0x5674ca);}(_0x2508,0x10d));var _0x88d4=function(_0x564535,_0x5674ca){_0x564535=_0x564535-0x0;var _0x3e6f81=_0x2508[_0x564535];return _0x3e6f81;};var diameter=0x12c;function setup(){var _0x5e349b=createCanvas(0x1c2,0x1c2);_0x5e349b['parent'](_0x88d4('0x0'));colorMode(RGB,0xff,0xff,0xff,0x1);noStroke();}function draw(){background(0xff,0xff,0xff,0x1);fill(0xff,0x0,0x0,0.5);ellipse(width/0x2,height/0x2,diameter);}

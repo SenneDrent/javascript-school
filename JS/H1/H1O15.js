@@ -14,7 +14,12 @@ function draw() {
   background('lavender');
   text("x = " + round(xJOS),10,20);
   tekenJos(xJOS,yJOS);
-
+  translate(0,160);
+  tekenJos(xJOS,yJOS);
+  translate(0,160);
+  tekenJos(xJOS,yJOS);
+  xJOS += 3;
+  xJOS = constrain(xJOS,0 ,425);
 }
 
 function tekenJos(x,y) {
@@ -36,5 +41,6 @@ function tekenJos(x,y) {
   strokeWeight(3);
   fill('white');
   arc(0, 13, 26, 13, 0, PI, CHORD);
+  
   pop();
 }
