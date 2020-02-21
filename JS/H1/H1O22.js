@@ -11,15 +11,21 @@ function setup() {
 }
 
 function draw() {
-  background('lavender');
+ if (mouseX <= width / 2) {
+    background('yellow');
+ }
+ else {
+    background('white');
+ }
+  
   fill('black');  
   
   mouseX=constrain(mouseX,25,width - 25);
   mouseY=constrain(mouseY,25,height - 25);
 
-  text("Beweeg de muis | x = " + round(mouseX) + " en y = " + round(mouseY),10,20);
   
-  if (mouseX >= width - 30) {
+  
+  if (mouseX >= width - 30 || mouseX <= 30 || mouseY >= height - 30 || mouseY <= 30 || afstand <= 75 + 5) {
     kleur='red';
   }
   else {
@@ -28,8 +34,8 @@ function draw() {
   
   ellipse(width / 2,height / 2,100);
   tekenJos(mouseX,mouseY,kleur);
-  afstand=dist(315,105,225,225);
-  text(afstand,10,40);
+  afstand=dist(mouseX,mouseY,225,225);
+  text("Beweeg de muis | x = " + round(mouseX) + " en y = " + round(mouseY) + " | afstand = " + round(afstand),10,20);
 }
 
 function tekenJos(x,y,kleur) {

@@ -1,6 +1,6 @@
 var x = 120;
 var snelheid = 5;
-var diameter = 200;
+var diameter = 100;
 
 function setup() {
   var myCanvas = createCanvas(1000,300);
@@ -20,17 +20,20 @@ function draw() {
   stroke('white');
   strokeWeight(10);
 
-  if (mouseIsPressed == true && snelheid == 5) {
-      fill('green');
+  if (mouseIsPressed == true ) {
+     fill('red');
+     diameter = 200;
+  }
+  else if (snelheid == 5) {
+     fill('green');
+     diameter = 100;
   }
   else {
     fill('dodgerblue');
+    diameter = 100;
   }
   
-  if (x>880) {
-    snelheid = -1*snelheid;
-  }
-  if (x<120) {
+  if (x>880 || x<120) {
     snelheid = -1*snelheid;
   }
 
