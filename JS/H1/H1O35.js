@@ -1,4 +1,4 @@
-var aantalLagen = 100;
+var aantalLagen = 2;
 var breedte = 90;
 var hoogte;
 
